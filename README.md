@@ -41,3 +41,33 @@ This application allows users to log in, manage leave requests, and perform vari
    ```bash
    git clone https://github.com/yourusername/leave-management-system.git
    cd leave-management-system
+
+   🌐 Deployment
+Local Deployment
+Configure and run the app via IIS Express or Kestrel
+
+Azure Deployment
+Publish the app directly from Visual Studio to Microsoft Azure App Service
+
+📚 Learning Objectives
+Master ASP.NET Core MVC and Razor Pages
+
+Understand and implement the MVC pattern
+
+Use Entity Framework Core for database development
+
+Implement secure user authentication and role-based authorization
+
+Apply modern UI design with Bootstrap 5
+
+Learn to publish applications locally and on the cloud
+
+Use source control effectively for collaboration
+
+📸 Screenshots / Demo
+[Include screenshots or a link to a live demo if available]
+
+👨‍💻 Author
+Your Name – [your.email@example.com]
+
+GitHub: @yourusername
