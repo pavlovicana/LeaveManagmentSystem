@@ -42,9 +42,7 @@ This application allows users to log in, manage leave requests, and perform vari
    git clone https://github.com/yourusername/leave-management-system.git
    cd leave-management-system
 
-
-
-** 🌐 Deployment**
+**🌐 Deployment**
      
 Local Deployment
 Configure and run the app via IIS Express or Kestrel
