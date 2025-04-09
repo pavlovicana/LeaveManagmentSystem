@@ -9,5 +9,7 @@ namespace LeaveManagmentSystem.Web.Data
             : base(options)
         {
         }
+        //Create a DbSet property for LeaveType  
+        public DbSet<LeaveType> LeaveTypes { get; set; } // LeaveType is a model class 
     }
 }
