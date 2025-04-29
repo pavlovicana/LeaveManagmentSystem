@@ -3,6 +3,7 @@
 #nullable disable
 
 using LeaveManagmentSystem.Web.Common;
+using LeaveManagmentSystem.Web.Services.LeaveAllocations;
 using Microsoft.EntityFrameworkCore;
 
 namespace LeaveManagmentSystem.Web.Areas.Identity.Pages.Account
@@ -11,6 +12,7 @@ namespace LeaveManagmentSystem.Web.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ILeaveAllocationsService _leaveAllocationsService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
@@ -18,6 +20,7 @@ namespace LeaveManagmentSystem.Web.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
+            ILeaveAllocationsService leaveAllocationsService,
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
@@ -25,6 +28,7 @@ namespace LeaveManagmentSystem.Web.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
+            this._leaveAllocationsService = leaveAllocationsService;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
@@ -149,6 +153,8 @@ namespace LeaveManagmentSystem.Web.Areas.Identity.Pages.Account
                     }
 
                     var userId = await _userManager.GetUserIdAsync(user);
+                    //leave allocate for employee
+                    await _leaveAllocationsService.AllocateLeave(userId);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

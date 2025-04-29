@@ -1,5 +1,7 @@
 using LeaveManagmentSystem.Web.Data;
 using LeaveManagmentSystem.Web.Services;
+using LeaveManagmentSystem.Web.Services.LeaveAllocations;
+using LeaveManagmentSystem.Web.Services.LeaveRequests;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -13,7 +15,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<ILeaveTypesServices, LeaveTypesServices>();
+builder.Services.AddScoped<ILeaveAllocationsService, LeaveAllocationsService>();
+builder.Services.AddScoped<ILeaveRequestsService, LeaveRequestsService>();
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+builder.Services.AddHttpContextAccessor();
+
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
